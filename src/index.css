@@ -120,6 +120,20 @@
 /* ═══════════════════════════════════════════════ */
 
 /* 1) Selection en secciones de FONDO ROJO: fondo blanco, texto rojo */
+/* 0) Selection en el banner Hero del Home: fondo blanco, texto rojo */
+.hero-section ::selection,
+section[class*="hero"] ::selection,
+.hero-fade ::selection {
+  background-color: #fcf7f5 !important;
+  color: #c0181b !important;
+}
+.hero-section ::-moz-selection,
+section[class*="hero"] ::-moz-selection,
+.hero-fade ::-moz-selection {
+  background-color: #fcf7f5 !important;
+  color: #c0181b !important;
+}
+
 .red-background ::selection,
 [style*="background-color: #c0181b"] ::selection,
 section[class*="red"] ::selection {

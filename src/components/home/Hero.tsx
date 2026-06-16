@@ -148,7 +148,7 @@ export const Hero = () => {
   return (
     <section
       ref={containerRef}
-      className="relative h-screen min-h-[640px] w-full overflow-hidden text-brand-white"
+      className="hero-section relative h-screen min-h-[640px] w-full overflow-hidden text-brand-white"
       style={{
         backgroundColor: "#1a0606",
         backgroundImage: "url(/videos/caracter-hero-poster-blur.webp)",
