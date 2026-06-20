@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/contact/ContactForm";
 import GlobeWhiteTranslucent from "@/components/GlobeWhiteTranslucent";
 import { z } from "zod";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contacto = () => {
   useEffect(() => { window.scrollTo(0, 0); document.title = "Contacto — Productora"; }, []);
@@ -22,17 +23,31 @@ const Contacto = () => {
       setShowBriefModal(true);
     }
   };
-  const handleSendBrief = () => {
+  const handleSendBrief = async () => {
     const parsed = z.string().trim().email().max(255).safeParse(briefEmail);
     if (!parsed.success) {
       toast.error("Ingresá un email válido");
       return;
     }
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
+    try {
+      const { error } = await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "brief-notification",
+          templateData: {
+            email: parsed.data,
+            fileName: fileName ?? "—",
+          },
+        },
+      });
+      if (error) throw error;
       setBriefSent(true);
-    }, 600);
+    } catch (err) {
+      console.error("Error enviando el brief", err);
+      toast.error("No pudimos enviar tu brief. Probá de nuevo en un momento.");
+    } finally {
+      setSending(false);
+    }
   };
   const closeBriefModal = () => {
     setShowBriefModal(false);
