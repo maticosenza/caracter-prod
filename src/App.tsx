@@ -21,6 +21,7 @@ import BuenosAires from "./pages/contacto/BuenosAires.tsx";
 import Brief from "./pages/contacto/Brief.tsx";
 import Insights from "./pages/insights/Insights.tsx";
 import InsightDetail from "./pages/insights/InsightDetail.tsx";
+import Unsubscribe from "./pages/Unsubscribe.tsx";
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,8 @@ const App = () => (
 
             <Route path="/insights" element={<Insights />} />
             <Route path="/insights/:slug" element={<InsightDetail />} />
+
+            <Route path="/unsubscribe" element={<Unsubscribe />} />
 
             <Route path="*" element={<NotFound />} />
           </Route>
