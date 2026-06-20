@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { FloatingField, inputClass } from "./FloatingField";
+import { supabase } from "@/integrations/supabase/client";
 
 const schema = z.object({
   nombre: z.string().trim().min(1, "Ingresá tu nombre").max(100),
@@ -29,18 +30,36 @@ export const ContactForm = () => {
   const [submitting, setSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const parsed = schema.safeParse({ nombre, email, empresa, tipo, fecha, mensaje });
     if (!parsed.success) {
       toast.error(parsed.error.errors[0]?.message ?? "Revisá los datos del formulario");
       return;
     }
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const { error } = await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "contact-notification",
+          templateData: {
+            nombre: parsed.data.nombre,
+            email: parsed.data.email,
+            empresa: parsed.data.empresa || "—",
+            tipo: parsed.data.tipo,
+            fecha: parsed.data.fecha ? format(parsed.data.fecha, "dd/MM/yyyy") : "—",
+            mensaje: parsed.data.mensaje,
+          },
+        },
+      });
+      if (error) throw error;
       setShowSuccess(true);
       setNombre(""); setEmail(""); setEmpresa(""); setTipo(""); setFecha(undefined); setMensaje("");
-    }, 600);
+    } catch (err) {
+      console.error("Error enviando el formulario de contacto", err);
+      toast.error("No pudimos enviar tu mensaje. Probá de nuevo en un momento.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
