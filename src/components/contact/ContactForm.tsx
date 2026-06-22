@@ -52,6 +52,14 @@ export const ContactForm = () => {
         },
       });
       if (error) throw error;
+      // Confirmación al cliente que completó el formulario
+      await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "contact-confirmation",
+          recipientEmail: parsed.data.email,
+          templateData: { nombre: parsed.data.nombre },
+        },
+      });
       setShowSuccess(true);
       setNombre(""); setEmail(""); setEmpresa(""); setTipo(""); setFecha(undefined); setMensaje("");
     } catch (err) {

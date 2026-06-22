@@ -41,6 +41,14 @@ const Contacto = () => {
         },
       });
       if (error) throw error;
+      // Confirmación al cliente que cargó el brief
+      await supabase.functions.invoke("send-transactional-email", {
+        body: {
+          templateName: "brief-confirmation",
+          recipientEmail: parsed.data,
+          templateData: { fileName: fileName ?? "—" },
+        },
+      });
       setBriefSent(true);
     } catch (err) {
       console.error("Error enviando el brief", err);
