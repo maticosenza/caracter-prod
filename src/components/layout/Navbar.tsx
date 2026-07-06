@@ -10,8 +10,9 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isContactPage = location.pathname.startsWith("/contacto");
-  const useRedLogo = isContactPage && !scrolled;
-  const logoSrc = isContactPage && !scrolled ? logoCaracterRed : logoCaracter;
+  const isPrivacyPage = location.pathname.startsWith("/politica-de-privacidad");
+  const useLightNav = (isContactPage || isPrivacyPage) && !scrolled;
+  const logoSrc = useLightNav ? logoCaracterRed : logoCaracter;
 
   const handleLogoClick = () => {
     if (location.pathname === "/") {
