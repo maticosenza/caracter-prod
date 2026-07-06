@@ -77,7 +77,7 @@ export const Navbar = () => {
                 }`}
               />
               <span className={`relative z-10 transition-colors duration-300 ${
-                scrolled ? "group-hover:text-brand-white" : useRedLogo ? "group-hover:text-brand-white" : "group-hover:text-brand-white"
+                scrolled ? "group-hover:text-brand-white" : useLightNav ? "group-hover:text-brand-white" : "group-hover:text-brand-white"
               }`}>
                 Contacto
               </span>
