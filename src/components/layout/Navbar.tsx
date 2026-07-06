@@ -10,8 +10,9 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const isContactPage = location.pathname.startsWith("/contacto");
-  const useRedLogo = isContactPage && !scrolled;
-  const logoSrc = isContactPage && !scrolled ? logoCaracterRed : logoCaracter;
+  const isPrivacyPage = location.pathname.startsWith("/politica-de-privacidad");
+  const useLightNav = (isContactPage || isPrivacyPage) && !scrolled;
+  const logoSrc = useLightNav ? logoCaracterRed : logoCaracter;
 
   const handleLogoClick = () => {
     if (location.pathname === "/") {
@@ -54,9 +55,9 @@ export const Navbar = () => {
               aria-expanded={open}
               className="relative w-10 h-10 flex flex-col items-center justify-center gap-[6px] group"
             >
-              <span className={`block w-6 h-[2px] transition-all duration-300 ${useRedLogo ? "bg-brand-red" : "bg-brand-white"}`} />
-              <span className={`block w-6 h-[2px] transition-all duration-300 ${useRedLogo ? "bg-brand-red" : "bg-brand-white"}`} />
-              <span className={`block w-6 h-[2px] transition-all duration-300 ${useRedLogo ? "bg-brand-red" : "bg-brand-white"}`} />
+              <span className={`block w-6 h-[2px] transition-all duration-300 ${useLightNav ? "bg-brand-red" : "bg-brand-white"}`} />
+              <span className={`block w-6 h-[2px] transition-all duration-300 ${useLightNav ? "bg-brand-red" : "bg-brand-white"}`} />
+              <span className={`block w-6 h-[2px] transition-all duration-300 ${useLightNav ? "bg-brand-red" : "bg-brand-white"}`} />
             </button>
 
             <Link
@@ -64,7 +65,7 @@ export const Navbar = () => {
               className={`relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-3 text-[13px] font-medium uppercase tracking-wider group transition-colors duration-300 ${
                 scrolled
                   ? "bg-brand-white text-brand-red border border-brand-white"
-                  : useRedLogo
+                  : useLightNav
                     ? "bg-transparent text-brand-red border-2 border-brand-red"
                     : "bg-brand-white text-brand-black"
               }`}
@@ -76,7 +77,7 @@ export const Navbar = () => {
                 }`}
               />
               <span className={`relative z-10 transition-colors duration-300 ${
-                scrolled ? "group-hover:text-brand-white" : useRedLogo ? "group-hover:text-brand-white" : "group-hover:text-brand-white"
+                scrolled ? "group-hover:text-brand-white" : useLightNav ? "group-hover:text-brand-white" : "group-hover:text-brand-white"
               }`}>
                 Contacto
               </span>
