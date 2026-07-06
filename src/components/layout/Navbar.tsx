@@ -65,7 +65,7 @@ export const Navbar = () => {
               className={`relative inline-flex items-center justify-center overflow-hidden rounded-full px-6 py-3 text-[13px] font-medium uppercase tracking-wider group transition-colors duration-300 ${
                 scrolled
                   ? "bg-brand-white text-brand-red border border-brand-white"
-                  : useRedLogo
+                  : useLightNav
                     ? "bg-transparent text-brand-red border-2 border-brand-red"
                     : "bg-brand-white text-brand-black"
               }`}
