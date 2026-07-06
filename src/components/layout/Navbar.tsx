@@ -55,9 +55,9 @@ export const Navbar = () => {
               aria-expanded={open}
               className="relative w-10 h-10 flex flex-col items-center justify-center gap-[6px] group"
             >
-              <span className={`block w-6 h-[2px] transition-all duration-300 ${useRedLogo ? "bg-brand-red" : "bg-brand-white"}`} />
-              <span className={`block w-6 h-[2px] transition-all duration-300 ${useRedLogo ? "bg-brand-red" : "bg-brand-white"}`} />
-              <span className={`block w-6 h-[2px] transition-all duration-300 ${useRedLogo ? "bg-brand-red" : "bg-brand-white"}`} />
+              <span className={`block w-6 h-[2px] transition-all duration-300 ${useLightNav ? "bg-brand-red" : "bg-brand-white"}`} />
+              <span className={`block w-6 h-[2px] transition-all duration-300 ${useLightNav ? "bg-brand-red" : "bg-brand-white"}`} />
+              <span className={`block w-6 h-[2px] transition-all duration-300 ${useLightNav ? "bg-brand-red" : "bg-brand-white"}`} />
             </button>
 
             <Link
