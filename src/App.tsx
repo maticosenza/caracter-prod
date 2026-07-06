@@ -22,6 +22,7 @@ import Brief from "./pages/contacto/Brief.tsx";
 import Insights from "./pages/insights/Insights.tsx";
 import InsightDetail from "./pages/insights/InsightDetail.tsx";
 import Unsubscribe from "./pages/Unsubscribe.tsx";
+import PoliticaPrivacidad from "./pages/PoliticaPrivacidad.tsx";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
             <Route path="/insights/:slug" element={<InsightDetail />} />
 
             <Route path="/unsubscribe" element={<Unsubscribe />} />
+            <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
 
             <Route path="*" element={<NotFound />} />
           </Route>

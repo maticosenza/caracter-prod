@@ -851,3 +851,128 @@ div[class*="service"] ::-moz-selection {
 .oimg.loaded {
   opacity: 1;
 }
+
+/* ═══════════════════════════════════════════════ */
+/* PÁGINA — Política de Privacidad                */
+/* ═══════════════════════════════════════════════ */
+
+.privacy-page {
+  background: #fcf7f5;
+  min-height: 100vh;
+  padding: 140px 6vw 100px;
+}
+
+.privacy-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.privacy-header {
+  margin-bottom: 40px;
+  border-bottom: 2px solid #c0181b;
+  padding-bottom: 24px;
+}
+
+.privacy-header h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  color: #c0181b;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px 0;
+  line-height: 1;
+}
+
+.privacy-date {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  color: #0a0a0a;
+  opacity: 0.6;
+  margin: 0;
+}
+
+.privacy-intro {
+  font-family: 'Arial', sans-serif;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.7;
+  color: #0a0a0a;
+  margin: 0 0 48px 0;
+}
+
+.privacy-section {
+  margin-bottom: 40px;
+}
+
+.privacy-section h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(20px, 3vw, 28px);
+  color: #c0181b;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px 0;
+}
+
+.privacy-section p {
+  font-family: 'Arial', sans-serif;
+  font-size: clamp(14px, 1.8vw, 16px);
+  line-height: 1.7;
+  color: #0a0a0a;
+  margin: 0 0 12px 0;
+}
+
+.privacy-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0;
+}
+
+.privacy-section li {
+  font-family: 'Arial', sans-serif;
+  font-size: clamp(14px, 1.8vw, 16px);
+  line-height: 1.7;
+  color: #0a0a0a;
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.privacy-section li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 8px;
+  height: 8px;
+  background: #c0181b;
+  border-radius: 50%;
+}
+
+.privacy-link {
+  color: #c0181b;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: opacity 200ms ease;
+}
+
+.privacy-link:hover {
+  opacity: 0.7;
+}
+
+.privacy-page ::selection {
+  background-color: #c0181b !important;
+  color: #fcf7f5 !important;
+}
+
+.privacy-page ::-moz-selection {
+  background-color: #c0181b !important;
+  color: #fcf7f5 !important;
+}
+
+@media (max-width: 768px) {
+  .privacy-page {
+    padding: 120px 6vw 60px;
+  }
+  .privacy-section {
+    margin-bottom: 32px;
+  }
+}

@@ -7,7 +7,7 @@ const FOOTER_NAV = [
   { label: "Servicios", href: "/servicios" },
   { label: "Proyectos", href: "/proyectos" },
   { label: "Sobre nosotros", href: "/nosotros" },
-  { label: "Política de privacidad", href: "/privacidad" },
+  { label: "Política de privacidad", href: "/politica-de-privacidad" },
 ];
 
 const TikTokIcon = ({ className = "" }: { className?: string }) => (
