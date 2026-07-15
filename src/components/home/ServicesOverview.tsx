@@ -15,8 +15,8 @@ export const ServicesOverview = () => {
 
   return (
     <section className="bg-brand-red text-brand-white pt-[56px] pb-[80px] md:pt-[84px] md:pb-[120px] px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 items-center">
-        <div className="order-1 md:order-2 md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-12 gap-y-12 sm:gap-x-8 md:gap-x-12 items-center">
+        <div className="order-1 sm:order-2 md:order-2 sm:col-start-7 sm:col-span-6 md:col-start-7 md:col-span-6 lg:col-start-8 lg:col-span-4">
           <span className="eyebrow text-brand-white">Nuestros servicios</span>
           <div style={{ fontSize: "clamp(32px, 3.6vw, 56px)" }}>
             <h2 className="mt-6 font-display uppercase leading-[0.95] whitespace-nowrap">
@@ -40,7 +40,7 @@ export const ServicesOverview = () => {
           </Link>
         </div>
 
-        <div className="order-2 md:order-1 md:col-start-1 md:col-span-6 lg:col-start-2 lg:col-span-5 relative">
+        <div className="order-2 sm:order-1 md:order-1 sm:col-start-1 sm:col-span-6 md:col-start-1 md:col-span-6 lg:col-start-2 lg:col-span-5 relative">
           <RedFrame side="right" className="w-full max-w-[520px] ml-auto">
             <div ref={ref} className="overflow-hidden aspect-[3/4] w-full">
               <motion.img
