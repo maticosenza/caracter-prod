@@ -31,12 +31,33 @@ const Contacto = () => {
     }
     setSending(true);
     try {
+      let fileUrl = "";
+      if (selectedFile) {
+        if (selectedFile.size > 20 * 1024 * 1024) {
+          toast.error("El archivo supera los 20MB");
+          setSending(false);
+          return;
+        }
+        const safeName = (selectedFile.name || "brief").replace(/[^a-zA-Z0-9._-]/g, "_");
+        const path = `${crypto.randomUUID()}/${safeName}`;
+        const { error: upErr } = await supabase.storage.from("briefs").upload(path, selectedFile, {
+          contentType: selectedFile.type || "application/octet-stream",
+          upsert: false,
+        });
+        if (upErr) throw upErr;
+        const { data: signed, error: signErr } = await supabase.storage
+          .from("briefs")
+          .createSignedUrl(path, 60 * 60 * 24 * 365);
+        if (signErr) throw signErr;
+        fileUrl = signed?.signedUrl ?? "";
+      }
       const { error } = await supabase.functions.invoke("send-transactional-email", {
         body: {
           templateName: "brief-notification",
           templateData: {
             email: parsed.data,
             fileName: fileName ?? "—",
+            fileUrl,
           },
         },
       });
