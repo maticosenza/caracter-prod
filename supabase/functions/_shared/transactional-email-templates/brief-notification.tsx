@@ -1,6 +1,7 @@
 import * as React from 'npm:react@18.3.1'
 import {
   Body,
+  Button,
   Container,
   Head,
   Heading,
@@ -15,6 +16,7 @@ import type { TemplateEntry } from './registry.ts'
 interface BriefNotificationProps {
   email?: string
   fileName?: string
+  fileUrl?: string
 }
 
 const RED = '#c0181b'
@@ -24,6 +26,7 @@ const MUTED = '#6b6b6b'
 export const BriefNotification = ({
   email = '—',
   fileName = '—',
+  fileUrl = '',
 }: BriefNotificationProps) => (
   <Html>
     <Head />
@@ -44,9 +47,23 @@ export const BriefNotification = ({
             {fileName}
           </Text>
           <Hr style={{ borderColor: '#eee', margin: '16px 0' }} />
+          {fileUrl ? (
+            <>
+              <Button
+                href={fileUrl}
+                style={{ backgroundColor: RED, color: '#ffffff', borderRadius: '999px', padding: '12px 24px', fontSize: '13px', letterSpacing: '1px', textTransform: 'uppercase', textDecoration: 'none', display: 'inline-block' }}
+              >
+                Descargar archivo
+              </Button>
+              <Text style={{ color: MUTED, fontSize: '12px', lineHeight: '1.6', margin: '16px 0 0' }}>
+                El enlace de descarga es válido por 1 año.
+              </Text>
+            </>
+          ) : (
           <Text style={{ color: MUTED, fontSize: '13px', lineHeight: '1.6', margin: 0 }}>
             El contacto cargó un brief desde la página de contacto. Escribile a {email} para pedirle el archivo si no llegó adjunto.
           </Text>
+          )}
         </Section>
       </Container>
     </Body>
@@ -61,5 +78,6 @@ export const template = {
   previewData: {
     email: 'cliente@empresa.com',
     fileName: 'brief-evento-2026.pdf',
+    fileUrl: 'https://example.com/brief.pdf',
   },
 } satisfies TemplateEntry
